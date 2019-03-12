@@ -9,12 +9,11 @@
 --
 -- These index definitions should be taken as mere suggestions. Which
 -- indexes make sense depend on the applications.
--- 
+--
 -- ----------------------------------------------------------------
 
 -- The below command defines the schema where all the indexes are created
-USE mimiciiiv13;
-tee 2-index.log
+USE mimic;
 
 -- -----------
 -- ADMISSIONS
@@ -47,7 +46,7 @@ alter table CAREGIVERS
 -- -------------
 -- CHARTEVENTS
 -- -------------
-alter table CHARTEVENTS 
+alter table CHARTEVENTS
       add index CHARTEVENTS_idx01 (SUBJECT_ID, HADM_ID, ICUSTAY_ID),
       add index CHARTEVENTS_idx02 (ITEMID),
       add index CHARTEVENTS_idx03 (CHARTTIME, STORETIME),
@@ -116,7 +115,7 @@ alter table DATETIMEEVENTS
 -- DIAGNOSES_ICD
 -- ----------------
 
-alter table DIAGNOSES_ICD 
+alter table DIAGNOSES_ICD
       add index DIAGNOSES_ICD_idx01 (SUBJECT_ID, HADM_ID),
       add index DIAGNOSES_ICD_idx02 (ICD9_CODE, SEQ_NUM);
 
@@ -171,7 +170,7 @@ alter table INPUTEVENTS_MV
 -- LABEVENTS
 -- ------------
 
-alter table LABEVENTS 
+alter table LABEVENTS
       add index LABEVENTS_idx01 (SUBJECT_ID, HADM_ID),
       add index LABEVENTS_idx02 (ITEMID),
       add index LABEVENTS_idx03 (CHARTTIME),
@@ -181,7 +180,7 @@ alter table LABEVENTS
 -- MICROBIOLOGYEVENTS
 -- --------------------
 
-alter table MICROBIOLOGYEVENTS 
+alter table MICROBIOLOGYEVENTS
       add index MICROBIOLOGYEVENTS_idx01 (SUBJECT_ID, HADM_ID),
       add index MICROBIOLOGYEVENTS_idx02 (CHARTDATE, CHARTTIME),
       add index MICROBIOLOGYEVENTS_idx03 (SPEC_ITEMID, ORG_ITEMID, AB_ITEMID);
@@ -238,7 +237,7 @@ alter table PROCEDUREEVENTS_MV
       add index PROCEDUREEVENTS_MV_idx03 (ITEMID),
       add index PROCEDUREEVENTS_MV_idx04 (CGID),
       add index PROCEDUREEVENTS_MV_idx05 (ORDERCATEGORYNAME);
-      
+
 -- -----------------
 -- PROCEDURES_ICD
 -- -----------------
@@ -266,5 +265,3 @@ alter table TRANSFERS
       add index TRANSFERS_idx03 (CURR_CAREUNIT, PREV_CAREUNIT),
       add index TRANSFERS_idx04 (INTIME, OUTTIME),
       add index TRANSFERS_idx05 (LOS);
-
-notee
